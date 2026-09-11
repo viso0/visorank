@@ -1,0 +1,6 @@
+{
+  "name": "VisoRank",
+  "description": "Global product discovery and ranking platform for SaaS, AI tools, and startups.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
