@@ -16,10 +16,10 @@ jobs:
 
       - name: Extract VisoRank
         run: |
-          unzip -q visorank-github-ready.zip -d extracted
+          unzip -q visorank-github-ready-fixed.zip -d extracted
           cp -a extracted/visorank-github-ready/. .
           rm -rf extracted
-          rm -f visorank-github-ready.zip
+          rm -f visorank-github-ready-fixed.zip
           rm -f .github/workflows/build.yml
 
       - name: Commit extracted project
@@ -27,5 +27,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "Extract VisoRank project"
+          git diff --cached --quiet || git commit -m "Fix VisoRank product submission"
           git push
