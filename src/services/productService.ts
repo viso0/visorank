@@ -250,6 +250,13 @@ export const productService = {
     }
 
     try {
+      // Always use the currently authenticated Supabase user as founder_id.
+      // The products INSERT RLS policy requires founder_id = auth.uid().
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      if (authError || !user) {
+        return { error: 'You must be logged in to submit a product.' };
+      }
+
       const insertPayload = {
         slug: productData.slug,
         name: productData.name,
@@ -258,7 +265,7 @@ export const productService = {
         website_url: productData.websiteUrl,
         logo_url: productData.logoUrl,
         category_name: productData.category,
-        founder_id: productData.founderId || null,
+        founder_id: user.id,
         founder_name: productData.founder,
         founder_twitter: productData.founderTwitter || null,
         pricing_model: productData.pricingModel,
